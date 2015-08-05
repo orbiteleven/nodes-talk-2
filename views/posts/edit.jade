@@ -1,0 +1,6 @@
+extends ../layouts/default
+
+block content
+  form(method="POST", action="/posts/" + post.id)
+    input(type="hidden", name="_method", value="PUT")
+    include ./partials/form

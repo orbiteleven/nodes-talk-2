@@ -20,6 +20,8 @@
     "express": "^4.13.3"
   },
   "dependencies": {
-    "jade": "^1.11.0"
+    "body-parser": "^1.13.3",
+    "jade": "^1.11.0",
+    "lodash": "^3.10.1"
   }
 }

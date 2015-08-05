@@ -1,0 +1,16 @@
+extends ../layouts/default
+
+block content
+  ul.nav.nav-pills.pull-right
+    li
+      a(href="/posts/new") New Post
+  h1 Posts
+  for post in posts
+    .blog-post
+      ul.nav.nav-pills.pull-right
+        li(role="presentation")
+          a(href="/posts/" + post.id) Edit
+        li(role="presentation")
+          a(href="/posts/" + post.id + "/destroy") Delete
+      h2= post.title
+      != post.content

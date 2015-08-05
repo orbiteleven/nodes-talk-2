@@ -21,3 +21,9 @@ Dropping a bunch of HTML into our code would be ugly, so we implement Jade for H
 Most web developers coming from other frameworks will be familiar with MVC. While Express.js gives us the ability to organize our application (almost) however we'd like, MVC is a good way to separate concerns for a web application.
 
 Here we add a controller for some basic pages.
+
+## 05-posts: Add MVC for blog posts
+
+Continuing with our MVC pattern, we'll add a controller for blog posts, a Model to do some in-memory storage, views and dummy data.
+
+Note that we're not trying to create an ORM or even best practices with data sanitation and storage. This is for demonstration purposes only.
