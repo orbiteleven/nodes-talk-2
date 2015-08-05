@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-talk-2",
+  "version": "1.0.0",
+  "description": "A talk about Node.js for ABQ Web Geeks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/orbiteleven/nodes-talk-2.git"
+  },
+  "author": "Damon Toal-Rossi <damontr@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orbiteleven/nodes-talk-2/issues"
+  },
+  "homepage": "https://github.com/orbiteleven/nodes-talk-2#readme"
+}
