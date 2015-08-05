@@ -1,11 +1,14 @@
-var http = require('http');
+var express = require('express');
 
-var server = http.createServer(function server(req, res) {
-  res.writeHead(200, {
-    "Content-Type": "text/plain"
-  });
+var app = express();
 
-  res.end("Hello World!\n");
-}).listen(3000);
+app.get('/', function rootPath(req, res) {
+  res.send('Hello World!');
+});
 
-console.log('Server running at http://localhost:3000');
+var server = app.listen(3000, function serveApp() {
+  var host = server.address().host;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
+});
