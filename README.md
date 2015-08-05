@@ -11,3 +11,7 @@ Initial bootstrap of Node.js, creating a server, and returning "Hello World".
 ## 02-expressjs: "Hello World", but now with Express.js
 
 Since "raw" Node.js can be a bit verbose we implement "Hello World" in Express.js, a web application framework.
+
+## 03-jade-templates: Using Jade templates for clean HTML templating
+
+Dropping a bunch of HTML into our code would be ugly, so we implement Jade for HTML templating. Jade is an awesome markup syntax that replaces closing tags with an ident-based system.
