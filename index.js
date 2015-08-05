@@ -7,13 +7,11 @@ var app = express();
 // Configure our Application
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
+app.use(express.static('public'));
 
-// Application route listenters
-app.get('/', function rootPath(req, res) {
-  res.render('index', {
-    message: 'This is pretty cool, eh?'
-  })
-});
+// Import Controllers
+var PagesController = require('./controllers/pages');
+app.use(PagesController(app));
 
 // Star the server
 var server = app.listen(3000, function serveApp() {
