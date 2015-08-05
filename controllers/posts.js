@@ -5,12 +5,15 @@ var PostModel = require('../models/post');
 
 module.exports = function createPostsController(app) {
   var router = express.Router();
-  var posts = PostModel(app);
+  var Posts = PostModel(app);
 
   router.get('/posts', function postsIndex(req, res) {
-    return res.render('posts/index', {
-      title: "Posts",
-      posts: posts.all()
+    return Posts.all(function renderPosts(err, posts) {
+      if (err) {res.render(404)}
+      return res.render('posts/index', {
+        title: "Posts",
+        posts: posts
+      });
     });
   });
 
@@ -25,27 +28,28 @@ module.exports = function createPostsController(app) {
   });
 
   router.post('/posts', function createPost(req, res) {
-    console.log(req.body);
     var post = _.pick(req.body, 'title', 'content');
-    posts.create(post);
+    Posts.create(post);
     return res.redirect('/posts');
   });
 
   router.get('/posts/:postId', function editPost(req, res) {
-    var post = posts.get(req.params.postId);
-    return res.render('posts/edit', {
-      title: "Edit Post",
-      post: post
-    })
+    return Posts.get(req.params.postId, function renderEditPost(err, post) {
+      return res.render('posts/edit', {
+        title: "Edit Post",
+        post: post
+      });
+    });
   });
 
   router.put('/posts/:postId', function updatePost(req, res) {
-    var post = posts.update(req.params.postId, req.body);
-    return res.redirect('/posts');
+    return Posts.update(req.params.postId, req.body, function renderPostUpdate(err, posts) {
+      return res.redirect('/posts');
+    });
   });
 
   router.get('/posts/:postId/destroy', function destroyPost(req, res) {
-    posts.destroy(req.params.postId);
+    Posts.destroy(req.params.postId);
     return res.redirect('/posts');
   });
 

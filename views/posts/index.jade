@@ -5,12 +5,18 @@ block content
     li
       a(href="/posts/new") New Post
   h1 Posts
-  for post in posts
-    .blog-post
-      ul.nav.nav-pills.pull-right
-        li(role="presentation")
-          a(href="/posts/" + post.id) Edit
-        li(role="presentation")
-          a(href="/posts/" + post.id + "/destroy") Delete
-      h2= post.title
-      != post.content
+  if posts.length
+    for post in posts
+      .blog-post.panel.panel-default
+        .panel-heading
+          h3= post.title
+          small= post.createdAt
+        .panel-body!= post.content
+          .clearfix
+          ul.nav.nav-pills.pull-right
+            li(role="presentation")
+              a(href="/posts/" + post._id) Edit
+            li(role="presentation")
+              a(href="/posts/" + post._id + "/destroy") Delete
+  else
+    p.bg-warning No posts to show

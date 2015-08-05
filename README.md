@@ -27,3 +27,7 @@ Here we add a controller for some basic pages.
 Continuing with our MVC pattern, we'll add a controller for blog posts, a Model to do some in-memory storage, views and dummy data.
 
 Note that we're not trying to create an ORM or even best practices with data sanitation and storage. This is for demonstration purposes only.
+
+## 06-async-and-persistent: Add MongoDB persistence and introduce I/O async callbacks
+
+Every time we shut the server down, we loose our data. Adding a persistence layer prevents that, however it introduces another issue: how do we get around Node.js's asynchronous nature? The answer: callbacks!

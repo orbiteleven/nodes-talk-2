@@ -5,6 +5,13 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+// Import our db client
+var MongoClient = require('mongodb').MongoClient;
+
+// Import Controllers
+var PagesController = require('./controllers/pages');
+var PostsController = require('./controllers/posts');
+
 // Implement a new Application
 var app = express();
 
@@ -26,14 +33,22 @@ app.use(methodOverride(function methodOverride(req, res) {
   }
 }));
 
-// Import Controllers
-app.use(require('./controllers/pages')(app)); // Pages
-app.use(require('./controllers/posts')(app)); // Posts
+// Connect to our database
+MongoClient.connect('mongodb://127.0.0.1:27017/node-example', function initMongoDbConnection(err, db) {
+  if (err) throw err;
 
-// Star the server
-var server = app.listen(3000, function serveApp() {
-  var host = server.address().host;
-  var port = server.address().port;
+  // Add this to the application so it
+  app.set('db', db);
 
-  console.log('Example app listening at http://%s:%s', host, port);
-});
+  // Initialize Controllers
+  app.use(PagesController(app));
+  app.use(PostsController(app));
+
+  // Star the server
+  var server = app.listen(3000, function serveApp() {
+    var host = server.address().host;
+    var port = server.address().port;
+
+    console.log('Example app listening at http://%s:%s', host, port);
+  });
+})
